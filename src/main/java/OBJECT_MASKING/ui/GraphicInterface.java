@@ -5,13 +5,52 @@ import javax.swing.*;
 
 public class GraphicInterface extends JFrame {
 
+    private final JButton nextButton = new JButton("Далее");
+    private final JLabel nLabel = new JLabel("Введите количество Объектов");
+    private final JLabel kLabel = new JLabel("Введите количество Критериев");
+    private final JTextField nGet = new JTextField(10);
+    private final JTextField kGet = new JTextField(10);
 
     public GraphicInterface() {
         super("Главное окно");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(550, 320);
+        setSize(400, 200);
+        compose();
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    private void addButtonListeners() {
+        //nextButton.addActionListener(evt -> new CountWindow());
+
+    }
+
+    private void compose() {
+        GroupLayout layout = new GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
+        layout.setHorizontalGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(nLabel)
+                        .addComponent(kLabel))
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(kGet)
+                        .addComponent(nGet)
+                        .addComponent(nextButton, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        layout.setVerticalGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(nLabel)
+                        .addComponent(nGet, 0, GroupLayout.DEFAULT_SIZE, 20))
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(kLabel)
+                        .addComponent(kGet, 0, GroupLayout.DEFAULT_SIZE, 20))
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(nextButton))
+
+        );
     }
 
     public static void main(String[] args) {
