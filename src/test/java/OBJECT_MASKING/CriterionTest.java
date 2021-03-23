@@ -1,5 +1,6 @@
-package OBJECT_MASKING.functions;
+package OBJECT_MASKING;
 
+import OBJECT_MASKING.functions.Criterion;
 import org.junit.Test;
 
 class CriterionTest {
