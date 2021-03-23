@@ -1,5 +1,7 @@
 package OBJECT_MASKING.ui;
 
+import OBJECT_MASKING.exceptions.WrongNumberOfElementsException;
+
 import javax.swing.*;
 
 
@@ -7,6 +9,7 @@ public class GraphicInterface extends JFrame {
 
     // n - будем называть количество объектов ({i}n = 1, 2, ..., n)
     // k - будем называть количество критериев ({Ck} = C1, C2, ..., Ck)
+
     private final JButton nextButton = new JButton("Далее");
     private final JLabel nLabel = new JLabel("Введите количество Объектов");
     private final JLabel kLabel = new JLabel("Введите количество Критериев");
@@ -18,13 +21,26 @@ public class GraphicInterface extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 200);
         compose();
+        addButtonListeners();
         setLocationRelativeTo(null);
         setVisible(true);
     }
 
     private void addButtonListeners() {
         //nextButton.addActionListener(evt -> new CountWindow());
-
+        nextButton.addActionListener(evt -> {
+            try {
+                int objectNumber = Integer.parseInt(nGet.getText());
+                int criterionNumber = Integer.parseInt(kGet.getText());
+                if (objectNumber < 1 || criterionNumber < 1) {
+                    throw new WrongNumberOfElementsException();
+                }
+                //this.dispose();
+                //new PointsWindow(count);
+            } catch (Exception exception) {
+                new ErrorWindow(this, exception);
+            }
+        });
     }
 
     private void compose() {
