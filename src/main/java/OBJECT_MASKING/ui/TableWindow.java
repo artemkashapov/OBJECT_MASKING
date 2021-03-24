@@ -35,7 +35,7 @@ public class TableWindow extends JFrame {
 
 
     public TableWindow(int countOfObject, int countOfParameters, int countOfPriorities) {
-        super("Простой пример с JTable");
+        super("Параметры задачи");
         this.countOfObject = countOfObject;
         this.countOfParameters = countOfParameters;
         this.countOfPriorities = countOfPriorities;
@@ -48,13 +48,13 @@ public class TableWindow extends JFrame {
         for (int i = 0; i < countOfParameters; i++) {
             model1.addColumn("      K " + (i + 1) + "     ");
         }
-        for (int i = 0; i < countOfObject; i++){
-                Vector<String> object = new Vector<>();
-                for (int j = 0; j < countOfParameters; j++) {
-                    object.add(" ");
-                }
-                    model1.addRow(object);
-                }
+        for (int i = 0; i < countOfObject; i++) {
+            Vector<String> object = new Vector<>();
+            for (int j = 0; j < countOfParameters; j++) {
+                object.add(" ");
+            }
+            model1.addRow(object);
+        }
 
         Vector<String> vectorCriteria = new Vector<>();
         for (int i = 0; i < countOfParameters; i++) {
@@ -64,7 +64,7 @@ public class TableWindow extends JFrame {
 
 
         Vector<String> vectorIntervals = new Vector<>();
-        for (int i = 0; i < countOfPriorities; i++){
+        for (int i = 0; i < countOfPriorities; i++) {
             vectorIntervals.add(" ");
         }
         model3.addColumn("Левая граница", vectorIntervals);
@@ -97,23 +97,25 @@ public class TableWindow extends JFrame {
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                .addGroup(layout.createParallelGroup()
+                .addGroup(layout.createSequentialGroup()
                         .addComponent(tableScrollPane1)
-                        .addGap(20)
                         .addComponent(tableScrollPane2)
-                        .addComponent(tableScrollPane3)
-                )
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(tableScrollPane3))
+                .addGroup(layout.createSequentialGroup()
                         .addComponent(kLabel)
-                        .addComponent(maxParameters))
-                .addComponent(ok)
+                        .addComponent(maxParameters)
+                        .addComponent(ok))
         );
 
         layout.setVerticalGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addComponent(tableScrollPane1)
-                        .addComponent(tableScrollPane2))
-                .addComponent(ok)
+                        .addComponent(tableScrollPane2)
+                        .addComponent(tableScrollPane3))
+                .addGroup(layout.createParallelGroup()
+                        .addComponent(kLabel)
+                        .addComponent(maxParameters)
+                        .addComponent(ok))
         );
 
 
