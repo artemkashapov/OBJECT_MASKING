@@ -157,7 +157,4 @@ public class TableWindow extends JFrame {
 
     }
 
-    public static void main(String[] args) {
-        new TableWindow(3, 5, 4);
-    }
 }
