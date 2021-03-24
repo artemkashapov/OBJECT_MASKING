@@ -14,7 +14,7 @@ public class SimpleTableTest extends JFrame {
     static DefaultTableModel model2 = new javax.swing.table.DefaultTableModel();
     int countOfParameters;
     int countOfObject;
-    JButton ok = new JButton("Ok");
+    JButton ok = new JButton("Ок");
     JTable parameters = new JTable(model1);
     JTable criterion = new JTable(model2);
     private final JScrollPane tableScrollPane1 = new JScrollPane(parameters);
@@ -25,7 +25,7 @@ public class SimpleTableTest extends JFrame {
         super("Простой пример с JTable");
         this.countOfObject = countOfObject;
         this.countOfParameters = countOfParameters;
-
+        setLocationRelativeTo(null);
 
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         model1.addColumn("  Объекты  ");
@@ -48,7 +48,7 @@ public class SimpleTableTest extends JFrame {
         for (int i = 0; i < countOfParameters; i++) {
             vectorCtriteries.add(" ");
         }
-        model2.addColumn("Коэффициент значимости", vectorCtriteries);
+        model2.addColumn("Значимости критериев", vectorCtriteries);
 
 
         parameters.setRowHeight(30);

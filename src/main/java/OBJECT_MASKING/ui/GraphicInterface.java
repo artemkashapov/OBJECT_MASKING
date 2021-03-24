@@ -9,17 +9,20 @@ public class GraphicInterface extends JFrame {
 
     // n - будем называть количество объектов ({i}n = 1, 2, ..., n)
     // k - будем называть количество критериев ({Ck} = C1, C2, ..., Ck)
+    // p - будем называть количество приоритеов (В массиве интервалов 2p элементов)
 
     private final JButton nextButton = new JButton("Далее");
-    private final JLabel nLabel = new JLabel("Введите количество Объектов");
-    private final JLabel kLabel = new JLabel("Введите количество Критериев");
+    private final JLabel nLabel = new JLabel("Введите количество объектов");
+    private final JLabel kLabel = new JLabel("Введите количество критериев");
+    private final JLabel pLabel = new JLabel("Введите количество приоритетов");
     private final JTextField nGet = new JTextField(10);
     private final JTextField kGet = new JTextField(10);
+    private final JTextField pGet = new JTextField(10);
 
     public GraphicInterface() {
-        super("Главное окно");
+        super("Окно конфигурации");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 200);
+        setSize(400, 170);
         compose();
         addButtonListeners();
         setLocationRelativeTo(null);
@@ -27,12 +30,12 @@ public class GraphicInterface extends JFrame {
     }
 
     private void addButtonListeners() {
-        //nextButton.addActionListener(evt -> new CountWindow());
         nextButton.addActionListener(evt -> {
             try {
                 int objectNumber = Integer.parseInt(nGet.getText());
                 int criterionNumber = Integer.parseInt(kGet.getText());
-                if (objectNumber < 1 || criterionNumber < 1) {
+                int priorityNumber = Integer.parseInt(pGet.getText());
+                if (objectNumber < 1 || criterionNumber < 1 || priorityNumber < 1) {
                     throw new WrongNumberOfElementsException();
                 }
                 this.dispose();
@@ -51,10 +54,12 @@ public class GraphicInterface extends JFrame {
         layout.setHorizontalGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addComponent(nLabel)
-                        .addComponent(kLabel))
+                        .addComponent(kLabel)
+                        .addComponent(pLabel))
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addComponent(kGet)
                         .addComponent(nGet)
+                        .addComponent(pGet)
                         .addComponent(nextButton, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -66,6 +71,9 @@ public class GraphicInterface extends JFrame {
                         .addComponent(kLabel)
                         .addComponent(kGet, 0, GroupLayout.DEFAULT_SIZE, 20))
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addComponent(pLabel)
+                        .addComponent(pGet, 0, GroupLayout.DEFAULT_SIZE, 20))
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
                         .addComponent(nextButton))
 
         );
