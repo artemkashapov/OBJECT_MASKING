@@ -17,6 +17,7 @@ public class TableWindow extends JFrame {
     int countOfParameters;
     int countOfObject;
     int countOfPriorities;
+    int maxNumber;
 
 
     JButton ok = new JButton("Ок");
@@ -45,9 +46,7 @@ public class TableWindow extends JFrame {
 
         model1.addColumn("  Объекты  ");
 
-        for (int i = 0; i < countOfParameters; i++) {
-            model1.addColumn("      K " + (i + 1) + "     ");
-        }
+
         for (int i = 0; i < countOfObject; i++) {
             Vector<String> object = new Vector<>();
             for (int j = 0; j < countOfParameters; j++) {
@@ -75,13 +74,16 @@ public class TableWindow extends JFrame {
         criterion.setRowHeight(30);
         intervals.setRowHeight(30);
 
-        TableWindow.setColumnsWidth(parameters);
-        TableWindow.setColumnsWidth(criterion);
-        TableWindow.setColumnsWidth(intervals);
+
 
         parameters.setIntercellSpacing(new Dimension(10, 10));
         parameters.setGridColor(Color.blue);
         parameters.setShowVerticalLines(true);
+
+        parameters.setEnabled(false);
+        criterion.setEnabled(false);
+        intervals.setEnabled(false);
+        ok.setEnabled(false);
 
         compose();
         addButtonListeners();
@@ -103,8 +105,8 @@ public class TableWindow extends JFrame {
                         .addComponent(tableScrollPane3))
                 .addGroup(layout.createSequentialGroup()
                         .addComponent(kLabel)
-                        .addComponent(maxParameters))
-                .addGroup(layout.createSequentialGroup()
+                        .addComponent(maxParameters)
+                        .addComponent(setButton)
                         .addComponent(ok))
         );
 
@@ -115,8 +117,8 @@ public class TableWindow extends JFrame {
                         .addComponent(tableScrollPane3))
                 .addGroup(layout.createParallelGroup()
                         .addComponent(kLabel)
-                        .addComponent(maxParameters))
-                .addGroup(layout.createParallelGroup()
+                        .addComponent(maxParameters)
+                        .addComponent(setButton)
                         .addComponent(ok))
         );
 
@@ -146,6 +148,7 @@ public class TableWindow extends JFrame {
         return array;
     }
 
+
     private void addButtonListeners() {
         ok.addActionListener(evt -> {
             ArrayList<Double> numdata = new ArrayList();
@@ -156,7 +159,11 @@ public class TableWindow extends JFrame {
                 for (int j = 1; j < model1.getColumnCount(); j++) {
                     numdata.add(Double.parseDouble(model1.getValueAt(i, j).toString()));
                     koeff.add(Double.parseDouble(model2.getValueAt(j - 1, 0).toString()));
-                    resOneObject += (numdata.get(j - 1) * koeff.get(j - 1));
+
+                }
+                numdata = TableWindow.maximize(numdata, maxNumber);
+                for (int count = 1; count < model1.getColumnCount(); count++){
+                    resOneObject += (numdata.get(count - 1) * koeff.get(count - 1));
                 }
                 numdata.clear();
                 koeff.clear();
@@ -164,6 +171,26 @@ public class TableWindow extends JFrame {
                 resOneObject = 0;
             }
             System.out.println(result);
+        });
+        setButton.addActionListener(evt -> {
+            parameters.setEnabled(true);
+            criterion.setEnabled(true);
+            intervals.setEnabled(true);
+            ok.setEnabled(true);
+
+            maxNumber = Integer.parseInt(maxParameters.getText());
+            for (int i = 0; i < maxNumber; i++) {
+                model1.addColumn("      K " + (i + 1) + "     " + "(max)");
+            }
+            for (int i = maxNumber; i < countOfParameters; i++) {
+                model1.addColumn("      K " + (i + 1) + "     " + "(min)");
+            }
+            TableWindow.setColumnsWidth(parameters);
+            TableWindow.setColumnsWidth(criterion);
+            TableWindow.setColumnsWidth(intervals);
+
+            setButton.setEnabled(false);
+
         });
 
     }
