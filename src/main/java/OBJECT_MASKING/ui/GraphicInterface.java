@@ -41,7 +41,8 @@ public class GraphicInterface extends JFrame {
                 this.dispose();
                 new TableWindow(objectNumber, criterionNumber, priorityNumber);
             } catch (Exception exception) {
-                new ErrorWindow(this, exception);
+                exception.printStackTrace();
+               // new ErrorWindow(this, exception);
             }
         });
     }

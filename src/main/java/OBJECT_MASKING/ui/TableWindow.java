@@ -20,6 +20,7 @@ public class TableWindow extends JFrame {
 
 
     JButton ok = new JButton("Ок");
+    JButton setButton = new JButton("Задать");
     JTable parameters = new JTable(model1);
     JTable criterion = new JTable(model2);
     JTable intervals = new JTable(model3);
@@ -68,7 +69,6 @@ public class TableWindow extends JFrame {
         }
         model3.addColumn("Левая граница", vectorIntervals);
         model3.addColumn("Правая граница", vectorIntervals);
-
 
 
         parameters.setRowHeight(30);
@@ -133,6 +133,13 @@ public class TableWindow extends JFrame {
                     );
             column.setPreferredWidth(prefWidth + 10);
         }
+    }
+
+    public static ArrayList<Double> maximize(ArrayList<Double> array, int maxNumber){
+        for (int i = maxNumber; i < array.size(); i++){
+            array.set(i, -1/array.get(i));
+        }
+        return array;
     }
 
     private void addButtonListeners() {
