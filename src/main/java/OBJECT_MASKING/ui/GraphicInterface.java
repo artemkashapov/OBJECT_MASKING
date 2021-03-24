@@ -75,9 +75,7 @@ public class GraphicInterface extends JFrame {
                         .addComponent(pGet, 0, GroupLayout.DEFAULT_SIZE, 20))
                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
                         .addComponent(nextButton))
-
         );
-
     }
 
     public static void main(String[] args) {

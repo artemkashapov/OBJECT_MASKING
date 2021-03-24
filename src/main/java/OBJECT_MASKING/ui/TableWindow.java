@@ -48,8 +48,15 @@ public class TableWindow extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        model1.addColumn("  Объекты  ");
+        Vector<String> numVector = new Vector<String>(countOfObject);
 
+        for (int i = 0; i < countOfObject; i++) {
+            int value = i + 1;
+            numVector.add(i, String.valueOf(value));
+        }
+
+
+        model1.addColumn("  Объекты  ");
 
         for (int i = 0; i < countOfObject; i++) {
             Vector<String> object = new Vector<>();
