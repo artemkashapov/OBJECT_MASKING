@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
 
-public class ResultWindow extends JFrame {
+public class ResultWindow extends JDialog {
     static DefaultTableModel resultModel = new javax.swing.table.DefaultTableModel();
 
     ArrayList<Double> result;
@@ -20,7 +20,7 @@ public class ResultWindow extends JFrame {
     private final JScrollPane tableScrollPanel = new JScrollPane(resultTable);
 
     public ResultWindow (ArrayList<Double> result, ArrayList<Double> intervals){
-        super("Таблица результатов");
+
         setSize(550, 200);
 
         this.result = result;
@@ -39,10 +39,21 @@ public class ResultWindow extends JFrame {
         Vector<Integer> priorities = ResultWindow.toVector(objectSorted.getPriorities());
         Vector<Double> sumVector = ResultWindow.toVector(objectSorted.getSumVector());
         System.out.println(sumVector);
+        Vector<String> names = new Vector<>();
+        names.add("Объекты");
+        names.add("Приоритеты");
+        names.add("Значения");
+
+        resultModel.addColumn("", names);
 
        for (int i = 0; i < sumVector.size(); i++){
-           resultModel.addColumn(" ");
+           //resultModel.addColumn(" ");
+           Vector<Double> column = new Vector<>();
+           for (int j = 0; j < 3; j++){
+
+           }
        }
+
 
         resultModel.addRow(integers);
         resultModel.addRow(priorities);
@@ -51,7 +62,7 @@ public class ResultWindow extends JFrame {
         resultTable.setRowHeight(30);
 
         cp.add(tableScrollPanel);
-
+        setModal(true);
         resultTable.setEnabled(false);
         setVisible(true);
 

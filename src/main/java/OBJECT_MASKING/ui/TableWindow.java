@@ -14,8 +14,30 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Vector;
 
+class MyTableModel extends DefaultTableModel {
+
+    public MyTableModel() {
+        super();
+        System.out.println("Inside myTableModel");
+
+    }
+
+    public boolean isCellEditable(int row, int cols) {
+
+        if (cols == 0) {
+            return false;
+        }
+
+        //It will make the cells of Column-1 not Editable
+
+        return true;
+
+    }
+
+}
+
 public class TableWindow extends JFrame {
-    static DefaultTableModel model1 = new javax.swing.table.DefaultTableModel();
+    static MyTableModel model1 = new MyTableModel();
     static DefaultTableModel model2 = new javax.swing.table.DefaultTableModel();
     static DefaultTableModel model3 = new javax.swing.table.DefaultTableModel();
 
@@ -55,11 +77,12 @@ public class TableWindow extends JFrame {
             int value = i + 1;
             numVector.add(i, String.valueOf(value));
         }
-
-
-        model1.addColumn("  Объекты  ");
-
-
+        Vector<String> object = new Vector<>();
+        for (int i = 0; i < countOfObject; i++) {
+            object.add(i + 1 + "");
+        }
+        model1.addColumn("  Объекты  ", object);
+/*
         for (int i = 0; i < countOfObject; i++) {
             Vector<String> object = new Vector<>();
             for (int j = 0; j < countOfParameters; j++) {
@@ -67,6 +90,19 @@ public class TableWindow extends JFrame {
             }
             model1.addRow(object);
         }
+
+ */
+        /*
+        for (int i = 0; i < countOfObject; i++) {
+            for (int j = 0; j < countOfParameters; j++) {
+
+            }
+            model1.addRow(object);
+        }
+
+         */
+
+
 
         Vector<String> vectorCriteria = new Vector<>();
         for (int i = 0; i < countOfParameters; i++) {
@@ -96,6 +132,7 @@ public class TableWindow extends JFrame {
         criterion.setEnabled(false);
         intervals.setEnabled(false);
         okButton.setEnabled(false);
+
 
         compose();
         addButtonListeners();
@@ -189,10 +226,14 @@ public class TableWindow extends JFrame {
                     intervalsArray.add(Double.parseDouble(model3.getValueAt(k, 0).toString()));
                     intervalsArray.add(Double.parseDouble(model3.getValueAt(k, 1).toString()));
                 }
+
+                new ResultWindow(result, intervalsArray);
+
+
                 System.out.println(intervalsArray);
                 System.out.println(result);
 
-            UnsortedToSorted data = new UnsortedToSorted(result, intervalsArray);
+                UnsortedToSorted data = new UnsortedToSorted(result, intervalsArray);
 
                 data.fullSort();
                 System.out.println(Arrays.toString(data.getNumVector()));
@@ -214,11 +255,17 @@ public class TableWindow extends JFrame {
                 if (maxNumber > countOfParameters || maxNumber < 0) {
                     throw new WrongNumberOfElementsException();
                 }
+
+                Vector<String> object = new Vector<>();
+                for (int i = 0; i < countOfObject; i++) {
+                    object.add(" ");
+                }
+
                 for (int i = 0; i < maxNumber; i++) {
-                    model1.addColumn("      K " + (i + 1) + "     " + "(max)");
+                    model1.addColumn("      K " + (i + 1) + "     " + "(max)", object);
                 }
                 for (int i = maxNumber; i < countOfParameters; i++) {
-                    model1.addColumn("      K " + (i + 1) + "     " + "(min)");
+                    model1.addColumn("      K " + (i + 1) + "     " + "(min)", object);
                 }
 
                 maxParameters.setEnabled(false);
@@ -237,21 +284,20 @@ public class TableWindow extends JFrame {
 
 
         });
-        /*
-        parameters.getModel().addTableModelListener(e -> {
-            if (parameters.getSelectedRow()>=0) {
-                try {
-                    if (parameters.getSelectedColumn()==1){
 
-                        parameters.setValueAt("VALUE", parameters.getSelectedRow(), 2);
-                    }
-                } catch (ArrayIndexOutOfBoundsException ee){
+        parameters.getModel().addTableModelListener(e -> {
+            if (parameters.getSelectedRow() >= 0) {
+                try {
+                    //if (parameters.getSelectedColumn()==1){
+
+
+                    //}
+                } catch (ArrayIndexOutOfBoundsException ee) {
                     ee.printStackTrace();
                 }
             }
         });
 
-         */
 
     }
 
