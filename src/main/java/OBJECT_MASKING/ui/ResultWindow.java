@@ -19,7 +19,7 @@ public class ResultWindow extends JDialog {
 
     private final JScrollPane tableScrollPanel = new JScrollPane(resultTable);
 
-    public ResultWindow (ArrayList<Double> result, ArrayList<Double> intervals){
+    public ResultWindow(ArrayList<Double> result, ArrayList<Double> intervals) {
 
         setSize(550, 200);
 
@@ -35,29 +35,24 @@ public class ResultWindow extends JDialog {
 
         objectSorted.fullSort();
 
-        Vector<Integer> integers = ResultWindow.toVector(objectSorted.getNumVector());
-        Vector<Integer> priorities = ResultWindow.toVector(objectSorted.getPriorities());
-        Vector<Double> sumVector = ResultWindow.toVector(objectSorted.getSumVector());
+        Vector<String> integers = ResultWindow.toVector(objectSorted.getNumVector());
+        Vector<String> priorities = ResultWindow.toVector(objectSorted.getPriorities());
+        Vector<String> sumVector = ResultWindow.toVector(objectSorted.getSumVector());
         System.out.println(sumVector);
         Vector<String> names = new Vector<>();
-        names.add("Объекты");
-        names.add("Приоритеты");
-        names.add("Значения");
+        integers.insertElementAt("Объекты", 0);
+        priorities.insertElementAt("Приоритеты", 0);
+        sumVector.insertElementAt("Значения", 0);
 
-        resultModel.addColumn("", names);
 
-       for (int i = 0; i < sumVector.size(); i++){
-           //resultModel.addColumn(" ");
-           Vector<Double> column = new Vector<>();
-           for (int j = 0; j < 3; j++){
-
-           }
-       }
-
+        for (int i = 0; i < sumVector.size(); i++) {
+            resultModel.addColumn(" ");
+        }
 
         resultModel.addRow(integers);
         resultModel.addRow(priorities);
         resultModel.addRow(sumVector);
+
 
         resultTable.setRowHeight(30);
 
@@ -69,27 +64,23 @@ public class ResultWindow extends JDialog {
     }
 
 
-    public static Vector<Double> toVector(double[] doubles){
+    public static Vector<String> toVector(double[] doubles) {
         Vector vector = new Vector(doubles.length);
 
         for (double aDouble : doubles) {
-            vector.add(aDouble);
+            vector.add(String.valueOf(aDouble));
         }
         return vector;
     }
 
-    public static Vector<Integer> toVector(int[] ints){
+    public static Vector<String> toVector(int[] ints) {
         Vector vector = new Vector(ints.length);
 
         for (int anInt : ints) {
-            vector.add(anInt);
+            vector.add(String.valueOf(anInt));
         }
-        return vector;
+        return  vector;
     }
-
-
-
-
 
 
 }
