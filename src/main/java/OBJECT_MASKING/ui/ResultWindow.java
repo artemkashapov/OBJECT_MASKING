@@ -17,6 +17,8 @@ public class ResultWindow extends JDialog {
 
     JTable resultTable = new JTable(resultModel);
 
+    //private JButton resetButton  = new JButton('Перезапуск');
+
     private final JScrollPane tableScrollPanel = new JScrollPane(resultTable);
 
     public ResultWindow(ArrayList<Double> result, ArrayList<Double> intervals) {

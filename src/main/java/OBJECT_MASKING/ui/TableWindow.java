@@ -294,9 +294,6 @@ public class TableWindow extends JFrame {
                 }
 
                 maxParameters.setEnabled(false);
-                TableWindow.setColumnsWidth(parameters);
-                TableWindow.setColumnsWidth(criterion);
-                TableWindow.setColumnsWidth(intervals);
 
                 setButton.setEnabled(false);
             } catch (Exception exception) {
