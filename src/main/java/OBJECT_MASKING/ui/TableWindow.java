@@ -20,7 +20,7 @@ class MyTableModel extends DefaultTableModel {
 
     public MyTableModel() {
         super();
-        System.out.println("Inside myTableModel");
+        //System.out.println("Inside myTableModel");
 
     }
 

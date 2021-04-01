@@ -8,26 +8,23 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Vector;
 
-public class ResultWindow extends JDialog {
+public class ResultWindow extends JFrame {
     private final DefaultTableModel resultModel = new javax.swing.table.DefaultTableModel();
 
     ArrayList<Double> result;
     ArrayList<Double> intervals;
 
     JTable resultTable = new JTable(resultModel);
-    JScrollPane tableScrollPanel = new JScrollPane(resultTable);
+    private final JScrollPane tableScrollPanel = new JScrollPane(resultTable);
 
     public ResultWindow(ArrayList<Double> result, ArrayList<Double> intervals) {
-
+        super("Приоритеты маскировки");
         int width = result.size()*300;
         setSize(width, 200);
 
         this.result = result;
         this.intervals = intervals;
 
-        //Container cp = getContentPane();
-
-        //cp.setLayout(new FlowLayout());
         setLocationRelativeTo(null);
 
         UnsortedToSorted objectSorted = new UnsortedToSorted(result, intervals);
@@ -55,9 +52,7 @@ public class ResultWindow extends JDialog {
 
         resultTable.setRowHeight(30);
         compose();
-
-        //cp.add(tableScrollPanel);
-        setModal(true);
+        //setModal(true);
         resultTable.setEnabled(false);
         setVisible(true);
 
