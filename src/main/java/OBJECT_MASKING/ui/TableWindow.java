@@ -314,10 +314,12 @@ public class TableWindow extends JFrame {
         resetButton.addActionListener(evt -> {
             this.dispose();
             new GraphicInterface();
-
+            model1 = new MyTableModel();
+            model2 = new javax.swing.table.DefaultTableModel();
+            model3 = new javax.swing.table.DefaultTableModel();
         });
 
-        parameters.getModel().addTableModelListener(e -> {
+        /*parameters.getModel().addTableModelListener(e -> {
             if (parameters.getSelectedRow() >= 0) {
                 try {
                     //if (parameters.getSelectedColumn()==1){
@@ -328,7 +330,7 @@ public class TableWindow extends JFrame {
                     ee.printStackTrace();
                 }
             }
-        });
+        });*/
 
 
     }

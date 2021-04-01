@@ -6,7 +6,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Vector;
 
 public class ResultWindow extends JDialog {
@@ -22,7 +21,6 @@ public class ResultWindow extends JDialog {
     private final JScrollPane tableScrollPanel = new JScrollPane(resultTable);
 
     public ResultWindow(ArrayList<Double> result, ArrayList<Double> intervals) {
-
         setSize(550, 200);
 
         this.result = result;
@@ -81,7 +79,7 @@ public class ResultWindow extends JDialog {
         for (int anInt : ints) {
             vector.add(String.valueOf(anInt));
         }
-        return  vector;
+        return vector;
     }
 
 
