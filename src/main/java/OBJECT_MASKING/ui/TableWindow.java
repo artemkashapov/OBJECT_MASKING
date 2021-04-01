@@ -76,9 +76,6 @@ public class TableWindow extends JFrame {
         this.countOfParameters = countOfParameters;
         this.countOfPriorities = countOfPriorities;
 
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-
         Vector<String> numVector = new Vector<String>(countOfObject);
 
         for (int i = 0; i < countOfObject; i++) {
@@ -145,6 +142,8 @@ public class TableWindow extends JFrame {
         addButtonListeners();
 
         setSize(750, 400);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
     }
 
@@ -317,6 +316,7 @@ public class TableWindow extends JFrame {
             model1 = new MyTableModel();
             model2 = new javax.swing.table.DefaultTableModel();
             model3 = new javax.swing.table.DefaultTableModel();
+
         });
 
         /*parameters.getModel().addTableModelListener(e -> {
